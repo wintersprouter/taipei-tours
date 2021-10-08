@@ -1,0 +1,77 @@
+.button {
+  
+  &-like {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    font-size: 1em;
+    border: 0.1em solid rgba($color: $color-gray, $alpha: .4);
+    background-color: $color-background;
+    border-radius: 100%;
+    padding: 0.333em 0.35em 0.25em 0.5em;
+    color: rgba($color: $color-gray, $alpha: .5);
+
+    box-shadow: 0 0.25em 1em -0.25em;
+    cursor: pointer;
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+
+    text-decoration:none;
+
+    &:hover {
+      color: $color-red;
+      border: 0.1em solid $color-red;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+    &.selected {
+      color: $color-white;
+      background-color: $color-red;
+      border-color: $color-red;
+    }
+      
+    &-icon {
+      display: inline-block;
+      fill: currentColor;
+      width: 0.8em;
+      height: 0.8em;
+      margin-right: 0.2em;
+    }
+  }
+}
+
+
+
+
+
+#like {
+  color: $color-gray;
+  background-color: transparent;
+  border: 0.1em solid;
+  border-radius: 100px;
+  padding: 0.333em 1em 0.25em 1em;
+  line-height: 1.2em;
+  box-shadow: 0 0.25em 1em -0.25em;
+  cursor: pointer;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+  outline: 0;
+  &:hover {
+    color: $color-red;
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &.selected {
+    color: $color-white;
+    background-color: $color-red;
+    border-color: $color-red;
+  }
+  
+  .heart-icon {
+    display: inline-block;
+    fill: currentColor;
+    width: 0.8em;
+    height: 0.8em;
+    margin-right: 0.2em;
+  }
+}
