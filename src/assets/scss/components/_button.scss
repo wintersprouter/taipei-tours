@@ -1,5 +1,4 @@
 .button {
-  
   &-like {
     position: absolute;
     right: 5%;
@@ -14,9 +13,7 @@
     box-shadow: 0 0.25em 1em -0.25em;
     cursor: pointer;
     transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
-
     text-decoration:none;
-
     &:hover {
       color: $color-red;
       border: 0.1em solid $color-red;
@@ -38,40 +35,32 @@
       margin-right: 0.2em;
     }
   }
-}
-
-
-
-
-
-#like {
-  color: $color-gray;
-  background-color: transparent;
-  border: 0.1em solid;
-  border-radius: 100px;
-  padding: 0.333em 1em 0.25em 1em;
-  line-height: 1.2em;
-  box-shadow: 0 0.25em 1em -0.25em;
-  cursor: pointer;
-  transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
-  outline: 0;
-  &:hover {
-    color: $color-red;
-  }
-  &:active {
-    transform: scale(0.95);
-  }
-  &.selected {
-    color: $color-white;
-    background-color: $color-red;
-    border-color: $color-red;
-  }
-  
-  .heart-icon {
-    display: inline-block;
-    fill: currentColor;
-    width: 0.8em;
-    height: 0.8em;
-    margin-right: 0.2em;
+  &-more {
+    background-color:transparent;
+    border-radius: 15px;
+    padding: 0.5em;
+    border: 0.1rem solid $color-primary-light;
+    color: $color-primary-light;
+    font-size: 1.5rem;
+    &:link,
+    &:visited{
+      font-size: $default-font-size;
+      color: $color-primary;
+      display: inline;
+      text-decoration: none;
+      border-bottom: 1px solid $color-primary;
+      padding: 3px;
+      transition: all .2s;
+    }
+    &:hover{
+      background-color: $color-primary-light;
+      color: $color-white;
+      box-shadow: 0 1rem 2rem rgba($color-black,.15);
+      transform: translateY(-2px);
+    }
+    &:active{
+      box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+      transform: translateY(0);
+    }
   }
 }

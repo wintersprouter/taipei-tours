@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-content-button">More</button>
+      <button class="button-more">More</button>
     </div>
   </div>
 </template>
