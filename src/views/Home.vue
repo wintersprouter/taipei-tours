@@ -1,11 +1,13 @@
 <template>
   <section class="attractions">
-    <div class="row">
-      <Attraction
-        v-for="attraction in attractions"
-        :key="attraction.id"
-        :initial-attraction="attraction"
-      />
+    <div class="container">
+      <div class="attractions-wrapper">
+        <Attraction
+          v-for="attraction in attractions"
+          :key="attraction.id"
+          :initial-attraction="attraction"
+        />
+      </div>
     </div>
   </section>
 </template>
