@@ -1,5 +1,13 @@
 <template>
-  <section class="attractions"><Attraction /></section>
+  <section class="attractions">
+    <div class="row">
+      <Attraction
+        v-for="attraction in attractions"
+        :key="attraction.id"
+        :initial-attraction="attraction"
+      />
+    </div>
+  </section>
 </template>
 <script>
 import Attraction from "../components/Attraction.vue";
@@ -7,6 +15,12 @@ import attractionsAPI from "./../apis/attractions";
 export default {
   name: "Home",
   components: { Attraction },
+  data() {
+    return {
+      attractions: [],
+      totalPage: -1,
+    };
+  },
   created() {
     this.fetchAttractions();
   },
@@ -14,7 +28,10 @@ export default {
     async fetchAttractions() {
       try {
         const response = await attractionsAPI.getAttractions();
-        console.log(response.data);
+        const { total, data } = response.data;
+        this.totalPage = total;
+        this.attractions = data;
+        console.log(data);
       } catch (error) {
         this.isLoading = false;
         console.log("error", error);
