@@ -68,4 +68,16 @@
       transform: translateY(0);
     }
   }
+  &-close {
+    position: absolute;
+    top: 0;
+    right: 2%;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: $color-secondary;
+    background: transparent;
+  }
 }
