@@ -32,11 +32,26 @@
                     />
                   </div>
                 </div>
+                <p>
+                  {{ attraction.name }}
+                </p>
               </div>
               <div class="modal-body-content">
-                <p class="modal-description">
-                  {{ attraction.introduction }}
-                </p>
+                <div class="modal-description">
+                  <p class="modal-description-title">景點介紹</p>
+                  <p>
+                    {{ attraction.introduction }}
+                  </p>
+                </div>
+                <div class="modal-info">
+                  <p class="modal-info-title">景點資訊</p>
+                  <p>地址：{{ attraction.address }}</p>
+                  <p v-if="attraction.open_time">
+                    開放時間：{{ attraction.open_time }}
+                  </p>
+                  <p v-if="attraction.tel">電話：{{ attraction.tel }}</p>
+                </div>
+
                 <p>
                   <em class="modal-modified"
                     >update date: {{ attraction.modified }}</em

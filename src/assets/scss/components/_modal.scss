@@ -42,14 +42,6 @@
     position: relative;
     padding: 2rem;
     height:100%;
-    // display: flex;
-    // justify-content: space-around;
-    // width: 100%;
-    // &-description {
-    //   display: flex;
-    //   justify-content: space-around;
-    //   width: 100%;
-    // }
     &-image {
       object-fit:cover;
       position: absolute;
@@ -62,13 +54,36 @@
     &-description {
       display: flex;
       justify-content: space-around;
+      text-align: left;
     }
     &-content {
-      width:45%;
+      width:43%;
     }
   }
   &-description {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    line-height:2.5rem;
+    color: $color-black;
+    &-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color:$color-primary;
+    }
+  }
+  &-info {
+    font-size: 1.5rem;
+    color: $color-black;
+    margin: 2rem 0;
+    &-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color:$color-primary;
+    }
+  }
+  &-modified {
+    color: $color-gray;
   }
   &-fade {
     &-enter,&-leave-to{
