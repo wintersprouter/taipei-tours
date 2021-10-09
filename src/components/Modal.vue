@@ -101,7 +101,7 @@ export default {
       });
     },
   },
-  mounted() {
+  created() {
     this.generagteImages();
   },
 };
