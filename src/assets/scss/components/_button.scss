@@ -36,12 +36,17 @@
     }
   }
   &-more {
+    position: absolute;
+    left: 5%;
+    bottom:5%;
     background-color:transparent;
     border-radius: 15px;
+    font-weight: 700;
     padding: 0.5em;
     border: 0.1rem solid $color-primary-light;
     color: $color-primary-light;
     font-size: 1.5rem;
+    cursor: pointer;
     &:link,
     &:visited{
       font-size: $default-font-size;

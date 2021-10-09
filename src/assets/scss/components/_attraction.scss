@@ -40,6 +40,15 @@
       border-radius: 5px;
     }
   }
-  
+  &-content {
+    margin: 1.5rem  ;
+    height: 100px;
+    &-text {
+      font-size: 1.5rem;
+      &-icon {
+        color: $color-green;
+      }
+    }
+  }
 }
 

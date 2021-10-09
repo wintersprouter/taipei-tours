@@ -21,8 +21,10 @@
     </div>
     <div class="card-content">
       <div class="card-content-text">
-        <font-awesome-icon icon="gratipay"></font-awesome-icon>
-        <font-awesome-icon icon="map-marker-alt"></font-awesome-icon>
+        <font-awesome-icon
+          icon="map-marker-alt"
+          class="card-content-text-icon"
+        ></font-awesome-icon>
         {{ attraction.address }}
       </div>
     </div>
