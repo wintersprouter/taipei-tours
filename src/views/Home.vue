@@ -16,6 +16,8 @@
         v-if="totalPage.length > 1"
         :current-page="currentPage"
         :pages="pages"
+        :total-page="totalPage"
+        :category-ids="categoryIds"
         :previous-page="previousPage"
         :next-page="nextPage"
       />
@@ -37,22 +39,18 @@ export default {
       currentPage: 1,
       previousPage: -1,
       nextPage: -1,
+      categoryIds: "",
     };
   },
   created() {
     const { page = 1, categoryIds = "" } = this.$route.query;
-    console.log(this.$route.query);
-    this.fetchAttractions({ queryPage: page, queryCategoryId: categoryIds });
+    this.fetchAttractions({ queryPage: page, queryCategoryIds: categoryIds });
   },
 
   beforeRouteUpdate(to, from, next) {
     const { page = "", categoryIds = "" } = to.query;
     this.fetchAttractions({ queryPage: page, queryCategoryIds: categoryIds });
     next();
-    this.fetchAttractions({
-      page: 1,
-      categoryIds: "",
-    });
   },
   methods: {
     async fetchAttractions({ queryPage, queryCategoryIds }) {
@@ -63,13 +61,15 @@ export default {
         });
         const { total, data } = response.data;
         const pageLimit = 30;
-        this.attractions = data;
-
-        this.currentPage = Number(queryPage) || 1;
-        this.pages = Math.ceil(total / pageLimit);
-        for (let i = 1; i < this.pages + 1; i++) {
-          this.totalPage.push(i);
+        const totalpages = [];
+        const pages = Math.ceil(total / pageLimit);
+        for (let i = 1; i <= pages; i++) {
+          totalpages.push(i);
         }
+        this.attractions = data;
+        this.currentPage = Number(queryPage) || 1;
+        this.pages = pages;
+        this.totalPage = totalpages;
         this.previousPage = this.currentPage - 1 < 1 ? 1 : this.currentPage - 1;
         this.nextPage =
           this.currentPage + 1 > this.pages ? this.pages : this.currentPage + 1;
