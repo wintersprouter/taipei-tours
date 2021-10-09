@@ -1,0 +1,113 @@
+.modal {
+  background: #ffffff;
+  box-shadow: 2px 2px 20px 1px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 80%;
+  border-radius: 15px;
+  &-backdrop {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($color:     $color-black, $alpha: .3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-header,&-footer {
+    padding: 1.5rem;
+    display: flex;
+  }
+  &-header {
+    position: relative;
+    border-bottom: 1px solid $color-background;
+    color: $color-secondary;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .5rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &-footer {
+    border-top: 1px solid $color-background;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  &-body {
+    position: relative;
+    padding: 2rem;
+    height:100%;
+    width: 100%;
+    &-image {
+      object-fit:cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+    &-description {
+      display: flex;
+      justify-content: space-around;
+      text-align: left;
+    }
+    &-content {
+      width:43%;
+    }
+  }
+  &-description {
+    font-size: 1.5rem;
+    line-height:2.5rem;
+    color: $color-black;
+    &-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color:$color-primary;
+    }
+    &-text {
+      max-height: 20vh;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: $color-primary-light;
+        border-radius: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $color-secondary;
+        border-radius: 5px;
+      }
+    }
+    
+  }
+  &-info {
+    font-size: 1.5rem;
+    color: $color-black;
+    margin: 2rem 0;
+    &-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color:$color-primary;
+    }
+  }
+  &-modified {
+    color: $color-gray;
+  }
+  &-fade {
+    &-enter,&-leave-to{
+      opacity: 0;
+    }
+    &-enter-active,&-leave-active {
+      transition: opacity 0.5s ease;
+    }
+  }
+}
