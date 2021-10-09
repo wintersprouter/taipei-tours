@@ -39,7 +39,7 @@
               <div class="modal-body-content">
                 <div class="modal-description">
                   <p class="modal-description-title">景點介紹</p>
-                  <p>
+                  <p class="modal-description-text">
                     {{ attraction.introduction }}
                   </p>
                 </div>
