@@ -38,7 +38,11 @@
         >
           More
         </button>
-        <Modal v-show="isModalVisible" @close="closeModal" />
+        <Modal
+          v-show="isModalVisible"
+          @close="closeModal"
+          :initial-attraction="attraction"
+        />
       </div>
     </div>
   </div>
