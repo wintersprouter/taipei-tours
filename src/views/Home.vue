@@ -11,7 +11,15 @@
         </div>
       </div>
     </section>
-    <footer><Pagination /></footer>
+    <footer>
+      <Pagination
+        v-if="totalPage.length > 1"
+        :current-page="currentPage"
+        :pages="pages"
+        :previous-page="previousPage"
+        :next-page="nextPage"
+      />
+    </footer>
   </div>
 </template>
 <script>
@@ -24,11 +32,16 @@ export default {
   data() {
     return {
       attractions: [],
-      totalPage: -1,
+      pages: 1,
+      totalPage: [],
+      currentPage: 1,
+      previousPage: -1,
+      nextPage: -1,
     };
   },
   created() {
-    const { page = "", categoryIds = "" } = this.$route.query;
+    const { page = 1, categoryIds = "" } = this.$route.query;
+    console.log(this.$route.query);
     this.fetchAttractions({ queryPage: page, queryCategoryId: categoryIds });
   },
 
@@ -49,9 +62,17 @@ export default {
           categoryIds: queryCategoryIds,
         });
         const { total, data } = response.data;
-        this.totalPage = total;
+        const pageLimit = 30;
         this.attractions = data;
-        console.log(data);
+
+        this.currentPage = Number(queryPage) || 1;
+        this.pages = Math.ceil(total / pageLimit);
+        for (let i = 1; i < this.pages + 1; i++) {
+          this.totalPage.push(i);
+        }
+        this.previousPage = this.currentPage - 1 < 1 ? 1 : this.currentPage - 1;
+        this.nextPage =
+          this.currentPage + 1 > this.pages ? this.pages : this.currentPage + 1;
       } catch (error) {
         this.isLoading = false;
         console.log("error", error);
