@@ -57,8 +57,9 @@ export default {
   },
 
   beforeRouteUpdate(to, from, next) {
-    const { page = "", categoryIds = "" } = to.query;
+    const { page = "", categoryIds = "", type = "Attractions" } = to.query;
     this.fetchAttractions({ queryPage: page, queryCategoryIds: categoryIds });
+    this.fetchAttractionCategories({ queryType: type });
     next();
   },
   methods: {
@@ -75,6 +76,7 @@ export default {
         for (let i = 1; i <= pages; i++) {
           totalpages.push(i);
         }
+        this.categoryIds = queryCategoryIds;
         this.attractions = data;
         this.currentPage = Number(queryPage) || 1;
         this.pages = pages;
@@ -93,6 +95,7 @@ export default {
         });
         const { Category } = data.data;
         this.categories = Category;
+        console.log(this.categories);
       } catch (error) {
         console.log("error", error);
       }

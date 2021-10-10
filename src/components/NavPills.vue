@@ -7,6 +7,7 @@
       <router-link
         class="nav-link"
         :to="{ name: 'Home', query: { categoryIds: category.id } }"
+        :class="['nav-link', { active: categoryIds === category.id }]"
       >
         {{ category.name }}
       </router-link>
