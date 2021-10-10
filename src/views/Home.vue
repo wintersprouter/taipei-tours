@@ -27,6 +27,7 @@
 <script>
 import Attraction from "../components/Attraction.vue";
 import attractionsAPI from "./../apis/attractions";
+import miscellaneousAPI from "./../apis/miscellaneous";
 import Pagination from "../components/Pagination.vue";
 export default {
   name: "Home",
@@ -40,11 +41,17 @@ export default {
       previousPage: -1,
       nextPage: -1,
       categoryIds: "",
+      categories: [],
     };
   },
   created() {
-    const { page = 1, categoryIds = "" } = this.$route.query;
+    const {
+      page = 1,
+      categoryIds = "",
+      type = "Attractions",
+    } = this.$route.query;
     this.fetchAttractions({ queryPage: page, queryCategoryIds: categoryIds });
+    this.fetchAttractionCategories({ queryType: type });
   },
 
   beforeRouteUpdate(to, from, next) {
@@ -74,7 +81,17 @@ export default {
         this.nextPage =
           this.currentPage + 1 > this.pages ? this.pages : this.currentPage + 1;
       } catch (error) {
-        this.isLoading = false;
+        console.log("error", error);
+      }
+    },
+    async fetchAttractionCategories({ queryType }) {
+      try {
+        const { data } = await miscellaneousAPI.getCategories({
+          type: queryType,
+        });
+        const { Category } = data.data;
+        this.categories = Category;
+      } catch (error) {
         console.log("error", error);
       }
     },
