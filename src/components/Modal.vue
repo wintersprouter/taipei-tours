@@ -32,9 +32,7 @@
                     />
                   </div>
                 </div>
-                <p>
-                  {{ attraction.name }}
-                </p>
+                <p class="modal-album">{{ attraction.name }}．照片集</p>
               </div>
               <div class="modal-body-content">
                 <div class="modal-description">
