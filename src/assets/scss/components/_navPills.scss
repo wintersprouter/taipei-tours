@@ -13,7 +13,10 @@
   &-item {
     margin-right: 1.5rem;
     margin-bottom: 2rem;
-    &:last-child{
+    &:first-child {
+      margin-left: 1.5rem;
+    }
+    &:last-child {
       margin-right: 0;
     }
   }
@@ -34,7 +37,7 @@
     &:active {
       box-shadow: 0 .5rem 1rem rgba($color-black,.15);
     }
-    &.active{
+    &.active  {
       color: $color-white;
       background-color: $color-primary;
       font-weight: 600;

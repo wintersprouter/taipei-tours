@@ -95,7 +95,6 @@ export default {
         });
         const { Category } = data.data;
         this.categories = Category;
-        console.log(this.categories);
       } catch (error) {
         console.log("error", error);
       }
