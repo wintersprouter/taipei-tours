@@ -1,0 +1,46 @@
+.nav {
+  &-pills {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-end;
+    width: 100%;
+    padding: 1rem;
+    margin: 5rem auto;
+    height: 100%;
+  }
+  &-item {
+    margin-right: 1.5rem;
+    margin-bottom: 2rem;
+    &:first-child {
+      margin-left: 1.5rem;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &-link {
+    border: 1px solid $color-primary;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    text-align: center;
+    color: $color-primary;
+    background-color: transparent;
+    &:hover {
+      color: $color-white;
+      background-color: rgba($color-primary,.65);
+      border: 1px solid rgba($color-primary,.65);
+      font-weight: 600;
+      box-shadow: 0 1rem 2rem rgba($color-black,.15);
+    }
+    &:active {
+      box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+    }
+    &.active  {
+      color: $color-white;
+      background-color: $color-primary;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <section class="categories"><NavPills :categories="categories" /></section>
     <section class="attractions">
       <div class="container">
         <div class="attractions-wrapper">
@@ -27,10 +28,12 @@
 <script>
 import Attraction from "../components/Attraction.vue";
 import attractionsAPI from "./../apis/attractions";
+import miscellaneousAPI from "./../apis/miscellaneous";
 import Pagination from "../components/Pagination.vue";
+import NavPills from "../components/NavPills.vue";
 export default {
   name: "Home",
-  components: { Attraction, Pagination },
+  components: { NavPills, Attraction, Pagination },
   data() {
     return {
       attractions: [],
@@ -40,16 +43,23 @@ export default {
       previousPage: -1,
       nextPage: -1,
       categoryIds: "",
+      categories: [],
     };
   },
   created() {
-    const { page = 1, categoryIds = "" } = this.$route.query;
+    const {
+      page = 1,
+      categoryIds = "",
+      type = "Attractions",
+    } = this.$route.query;
     this.fetchAttractions({ queryPage: page, queryCategoryIds: categoryIds });
+    this.fetchAttractionCategories({ queryType: type });
   },
 
   beforeRouteUpdate(to, from, next) {
-    const { page = "", categoryIds = "" } = to.query;
+    const { page = "", categoryIds = "", type = "Attractions" } = to.query;
     this.fetchAttractions({ queryPage: page, queryCategoryIds: categoryIds });
+    this.fetchAttractionCategories({ queryType: type });
     next();
   },
   methods: {
@@ -66,6 +76,7 @@ export default {
         for (let i = 1; i <= pages; i++) {
           totalpages.push(i);
         }
+        this.categoryIds = queryCategoryIds;
         this.attractions = data;
         this.currentPage = Number(queryPage) || 1;
         this.pages = pages;
@@ -74,7 +85,17 @@ export default {
         this.nextPage =
           this.currentPage + 1 > this.pages ? this.pages : this.currentPage + 1;
       } catch (error) {
-        this.isLoading = false;
+        console.log("error", error);
+      }
+    },
+    async fetchAttractionCategories({ queryType }) {
+      try {
+        const { data } = await miscellaneousAPI.getCategories({
+          type: queryType,
+        });
+        const { Category } = data.data;
+        this.categories = Category;
+      } catch (error) {
         console.log("error", error);
       }
     },
