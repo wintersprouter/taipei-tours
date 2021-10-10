@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <section class="tab"><NavTabs /></section>
     <section class="categories"><NavPills :categories="categories" /></section>
     <section class="attractions">
       <div class="container">
@@ -31,9 +32,10 @@ import attractionsAPI from "./../apis/attractions";
 import miscellaneousAPI from "./../apis/miscellaneous";
 import Pagination from "../components/Pagination.vue";
 import NavPills from "../components/NavPills.vue";
+import NavTabs from "../components/NavTabs.vue";
 export default {
   name: "Home",
-  components: { NavPills, Attraction, Pagination },
+  components: { NavTabs, NavPills, Attraction, Pagination },
   data() {
     return {
       attractions: [],
