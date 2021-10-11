@@ -1,7 +1,11 @@
 <template>
   <ul class="nav-tabs">
     <li v-for="tab in tabs" :key="tab.id" class="nav-tabs-item">
-      <router-link :to="tab.path" class="nav-tabs-link">
+      <router-link
+        :to="tab.path"
+        class="nav-tabs-link"
+        :class="['nav-tabs-link', { actives: tab.path }]"
+      >
         {{ tab.title }}
       </router-link>
     </li>
@@ -17,7 +21,7 @@ export default {
         {
           id: uuidv4(),
           title: "台北景點總覽",
-          path: "/",
+          path: "/home",
         },
         {
           id: uuidv4(),
