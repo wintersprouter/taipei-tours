@@ -7,11 +7,10 @@
         <button
           v-if="attraction.isFavorited"
           type="button"
-          class="button-unlike-icon"
+          class="button-unlike"
           @click.stop.prevent="deleteFavorite(attraction.id)"
           :disabled="isProcessing"
         >
-          移除
           <svg
             class="button-unlike-icon"
             xmlns="http://www.w3.org/2000/svg"
