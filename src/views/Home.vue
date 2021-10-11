@@ -78,8 +78,12 @@ export default {
         for (let i = 1; i <= pages; i++) {
           totalpages.push(i);
         }
+        const attractions = data.map((item) => ({
+          ...item,
+          isFavorited: false,
+        }));
         this.categoryIds = queryCategoryIds;
-        this.attractions = data;
+        this.attractions = attractions;
         this.currentPage = Number(queryPage) || 1;
         this.pages = pages;
         this.totalPage = totalpages;

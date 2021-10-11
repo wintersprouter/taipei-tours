@@ -3,7 +3,32 @@
     <div class="card">
       <div class="card-cover">
         <div class="card-cover-title">{{ attraction.name }}</div>
-        <button type="button" class="button-like" :data-id="attraction.id">
+
+        <button
+          v-if="attraction.isFavorited"
+          type="button"
+          class="button-unlike-icon"
+          @click.stop.prevent="deleteFavorite(attraction.id)"
+          :disabled="isProcessing"
+        >
+          移除
+          <svg
+            class="button-unlike-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+          >
+            <path
+              d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"
+            />
+          </svg>
+        </button>
+        <button
+          v-else
+          type="button"
+          class="button-like"
+          @click.stop.prevent="addFavorite(attraction.id)"
+          :disabled="isProcessing"
+        >
           <svg
             class="button-like-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +89,7 @@ export default {
     return {
       attraction: this.initialAttraction,
       isModalVisible: false,
+      isProcessing: false,
     };
   },
   methods: {
@@ -72,6 +98,30 @@ export default {
     },
     closeModal() {
       this.isModalVisible = false;
+    },
+    async addFavorite(attractionId) {
+      try {
+        this.isProcessing = true;
+        //存到localstorage
+        console.log(attractionId);
+        this.attraction = { ...this.attraction, isFavorited: true };
+        this.isProcessing = false;
+      } catch (error) {
+        this.isProcessing = false;
+        console.log("error", error);
+      }
+    },
+    async deleteFavorite(attractionId) {
+      try {
+        this.isProcessing = true;
+        console.log(attractionId);
+        //移除localsotage
+        this.attraction = { ...this.attraction, isFavorited: false };
+        this.isProcessing = false;
+      } catch (error) {
+        this.isProcessing = false;
+        console.log("error", error);
+      }
     },
   },
 };
