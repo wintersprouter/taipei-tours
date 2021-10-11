@@ -76,15 +76,21 @@ export default {
           categoryIds: queryCategoryIds,
         });
         const { total, data } = response.data;
+
         const pageLimit = 30;
         const totalpages = [];
         const pages = Math.ceil(total / pageLimit);
         for (let i = 1; i <= pages; i++) {
           totalpages.push(i);
         }
+        this.favorAttractions =
+          JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
         const attractions = data.map((item) => ({
           ...item,
-          isFavorited: false,
+          isFavorited: this.favorAttractions.some(
+            (data) => data.id === item.id
+          ),
         }));
         this.categoryIds = queryCategoryIds;
         this.attractions = attractions;
