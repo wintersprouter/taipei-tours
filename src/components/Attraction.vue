@@ -98,24 +98,24 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
-    async addFavorite(attractionId) {
+    async addFavorite() {
       try {
         this.isProcessing = true;
-        //存到localstorage
-        console.log(attractionId);
         this.attraction = { ...this.attraction, isFavorited: true };
+        let favoritedAttraction = this.attraction;
+        this.$emit("after-add-favorite", favoritedAttraction);
         this.isProcessing = false;
       } catch (error) {
         this.isProcessing = false;
         console.log("error", error);
       }
     },
-    async deleteFavorite(attractionId) {
+    async deleteFavorite() {
       try {
         this.isProcessing = true;
-        console.log(attractionId);
-        //移除localsotage
         this.attraction = { ...this.attraction, isFavorited: false };
+        let favoritedAttraction = this.attraction;
+        this.$emit("after-remove-favorite", favoritedAttraction);
         this.isProcessing = false;
       } catch (error) {
         this.isProcessing = false;

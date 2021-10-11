@@ -9,6 +9,8 @@
             v-for="attraction in attractions"
             :key="attraction.id"
             :initial-attraction="attraction"
+            @after-add-favorite="afterAddFavorite"
+            @after-remove-favorite="afterAddFavorite"
           />
         </div>
       </div>
@@ -33,6 +35,7 @@ import miscellaneousAPI from "./../apis/miscellaneous";
 import Pagination from "../components/Pagination.vue";
 import NavPills from "../components/NavPills.vue";
 import NavTabs from "../components/NavTabs.vue";
+const STORAGE_KEY = "favorite-list";
 export default {
   name: "Home",
   components: { NavTabs, NavPills, Attraction, Pagination },
@@ -46,6 +49,7 @@ export default {
       nextPage: -1,
       categoryIds: "",
       categories: [],
+      favorAttractions: [],
     };
   },
   created() {
@@ -104,6 +108,24 @@ export default {
       } catch (error) {
         console.log("error", error);
       }
+    },
+    afterAddFavorite(favoritedAttraction) {
+      const { id, name } = favoritedAttraction;
+      const isFavorited = this.favorAttractions.some((data) => data.id === id);
+      if (isFavorited) {
+        this.favorAttractions = this.favorAttractions.filter(
+          (data) => data.id !== id
+        );
+        this.saveStorage();
+        return alert(` ${name}從我的最愛中移除`);
+      } else {
+        this.favorAttractions.push(favoritedAttraction);
+        this.saveStorage();
+        return alert(`${name}加入我的最愛!`);
+      }
+    },
+    async saveStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.favorAttractions));
     },
   },
 };
