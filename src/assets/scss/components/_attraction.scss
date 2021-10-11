@@ -25,6 +25,11 @@
       height: 300px;
       display: block;
       object-fit: cover;
+      &:hover {
+        z-index: 1;
+        transition: all .6s ease-in-out;
+        transform: scale(1.04) translateY(-.5rem);
+      }
     }
     &-title {
       position: absolute;

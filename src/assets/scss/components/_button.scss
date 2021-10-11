@@ -1,19 +1,29 @@
+%like-btn {
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  top: 5%;
+  font-size: 1em;
+  border-radius: 100%;
+  padding: 0.333em 0.35em 0.25em 0.5em;
+  cursor: pointer;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+  text-decoration:none;
+}
+%like-icon {
+  display: inline-block;
+  fill: currentColor;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.2em;
+}
 .button {
   &-like {
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    font-size: 1em;
+    @extend %like-btn;
     border: 0.1em solid rgba($color: $color-gray, $alpha: .4);
     background-color: $color-background;
-    border-radius: 100%;
-    padding: 0.333em 0.35em 0.25em 0.5em;
     color: rgba($color: $color-gray, $alpha: .5);
-
     box-shadow: 0 0.25em 1em -0.25em;
-    cursor: pointer;
-    transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
-    text-decoration:none;
     &:hover {
       color: $color-red;
       border: 0.1em solid $color-red;
@@ -21,23 +31,30 @@
     &:active {
       transform: scale(0.95);
     }
-    &.selected {
-      color: $color-white;
-      background-color: $color-red;
-      border-color: $color-red;
-    }
-      
+  
     &-icon {
-      display: inline-block;
-      fill: currentColor;
-      width: 0.8em;
-      height: 0.8em;
-      margin-right: 0.2em;
+      @extend %like-icon;
+    }
+  }
+  &-unlike {
+    @extend %like-btn;
+    border: 0.1em solid rgba($color: $color-red, $alpha: .4);
+    background-color: $color-white;
+    color: $color-red;
+    &-icon {
+      @extend %like-icon;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+    &:hover {
+      color: $color-gray;
+      border: 0.1em solid $color-gray;
     }
   }
   &-more {
     position: absolute;
-    left: 5%;
+    right:5%;
     bottom:5%;
     background-color:transparent;
     border-radius: 15px;

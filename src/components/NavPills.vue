@@ -4,6 +4,8 @@
       <router-link
         class="nav-link"
         :to="{ name: 'Home', query: { categoryIds: '', page: '1' } }"
+        :class="['nav-link', { active: categoryIds === null }]"
+        exact
       >
         全部
       </router-link>
@@ -13,6 +15,7 @@
         class="nav-link"
         :to="{ name: 'Home', query: { categoryIds: category.id, page: '1' } }"
         :class="['nav-link', { active: categoryIds === category.id }]"
+        exact
       >
         {{ category.name }}
       </router-link>
@@ -30,7 +33,7 @@ export default {
   },
   data() {
     return {
-      categoryIds: "",
+      categoryIds: " ",
     };
   },
 };

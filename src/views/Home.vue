@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <section class="tab"><NavTabs /></section>
     <section class="categories"><NavPills :categories="categories" /></section>
     <section class="attractions">
       <div class="container">
@@ -8,6 +9,8 @@
             v-for="attraction in attractions"
             :key="attraction.id"
             :initial-attraction="attraction"
+            @after-add-favorite="afterAddFavorite"
+            @after-remove-favorite="afterAddFavorite"
           />
         </div>
       </div>
@@ -31,9 +34,11 @@ import attractionsAPI from "./../apis/attractions";
 import miscellaneousAPI from "./../apis/miscellaneous";
 import Pagination from "../components/Pagination.vue";
 import NavPills from "../components/NavPills.vue";
+import NavTabs from "../components/NavTabs.vue";
+const STORAGE_KEY = "favorite-list";
 export default {
   name: "Home",
-  components: { NavPills, Attraction, Pagination },
+  components: { NavTabs, NavPills, Attraction, Pagination },
   data() {
     return {
       attractions: [],
@@ -44,6 +49,7 @@ export default {
       nextPage: -1,
       categoryIds: "",
       categories: [],
+      favorAttractions: [],
     };
   },
   created() {
@@ -70,14 +76,24 @@ export default {
           categoryIds: queryCategoryIds,
         });
         const { total, data } = response.data;
+
         const pageLimit = 30;
         const totalpages = [];
         const pages = Math.ceil(total / pageLimit);
         for (let i = 1; i <= pages; i++) {
           totalpages.push(i);
         }
+        this.favorAttractions =
+          JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+        const attractions = data.map((item) => ({
+          ...item,
+          isFavorited: this.favorAttractions.some(
+            (data) => data.id === item.id
+          ),
+        }));
         this.categoryIds = queryCategoryIds;
-        this.attractions = data;
+        this.attractions = attractions;
         this.currentPage = Number(queryPage) || 1;
         this.pages = pages;
         this.totalPage = totalpages;
@@ -98,6 +114,24 @@ export default {
       } catch (error) {
         console.log("error", error);
       }
+    },
+    afterAddFavorite(favoritedAttraction) {
+      const { id, name } = favoritedAttraction;
+      const isFavorited = this.favorAttractions.some((data) => data.id === id);
+      if (isFavorited) {
+        this.favorAttractions = this.favorAttractions.filter(
+          (data) => data.id !== id
+        );
+        this.saveStorage();
+        return alert(` ${name}從我的最愛中移除`);
+      } else {
+        this.favorAttractions.push(favoritedAttraction);
+        this.saveStorage();
+        return alert(`${name}加入我的最愛!`);
+      }
+    },
+    async saveStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.favorAttractions));
     },
   },
 };
