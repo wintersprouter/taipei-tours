@@ -17,6 +17,27 @@
   height: 0.8em;
   margin-right: 0.2em;
 }
+
+%modal-btn {
+  position: absolute;
+  bottom:5%;
+  background-color:transparent;
+  border-radius: 15px;
+  font-weight: 700;
+  padding: 0.5em;
+  font-size: 1.5rem;
+  cursor: pointer;
+  &:hover{
+      color: $color-white;
+      box-shadow: 0 1rem 2rem rgba($color-black,.15);
+      transform: translateY(-2px);
+  }
+  &:active{
+    box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+    transform: translateY(0);
+  }
+}
+
 .button {
   &-like {
     @extend %like-btn;
@@ -52,37 +73,23 @@
       border: 0.1em solid $color-gray;
     }
   }
+  
   &-more {
-    position: absolute;
     right:5%;
-    bottom:5%;
-    background-color:transparent;
-    border-radius: 15px;
-    font-weight: 700;
-    padding: 0.5em;
     border: 0.1rem solid $color-primary-light;
     color: $color-primary-light;
-    font-size: 1.5rem;
-    cursor: pointer;
-    &:link,
-    &:visited{
-      font-size: $default-font-size;
-      color: $color-primary;
-      display: inline;
-      text-decoration: none;
-      border-bottom: 1px solid $color-primary;
-      padding: 3px;
-      transition: all .2s;
-    }
+    @extend %modal-btn;
     &:hover{
       background-color: $color-primary-light;
-      color: $color-white;
-      box-shadow: 0 1rem 2rem rgba($color-black,.15);
-      transform: translateY(-2px);
     }
-    &:active{
-      box-shadow: 0 .5rem 1rem rgba($color-black,.15);
-      transform: translateY(0);
+  }
+  &-edit {
+    left:5%;
+    border: 0.1rem solid $color-secondary;
+    color: $color-secondary;
+    @extend %modal-btn;
+    &:hover{
+      background-color: $color-secondary;
     }
   }
   &-close {
