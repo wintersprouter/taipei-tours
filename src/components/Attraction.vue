@@ -55,6 +55,15 @@
       </div>
       <div class="card-footer">
         <button
+          v-if="isFavoritedList"
+          class="button-edit"
+          type="button"
+          :data-id="attraction.id"
+          @click="showEditModal"
+        >
+          Edit
+        </button>
+        <button
           class="button-more"
           type="button"
           :data-id="attraction.id"
@@ -67,26 +76,38 @@
           @close="closeModal"
           :initial-attraction="attraction"
         />
+        <EditModal
+          v-show="isEditModalVisible"
+          @close="closeEditModal"
+          :initial-attraction="attraction"
+        />
       </div>
     </div>
   </div>
 </template>
 <script>
 import Modal from "./Modal.vue";
+import EditModal from "./EditModal.vue";
 export default {
   name: "Attraction",
   components: {
     Modal,
+    EditModal,
   },
   props: {
     initialAttraction: {
       type: Object,
       required: true,
     },
+    isFavoritedList: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       attraction: this.initialAttraction,
+      isEditModalVisible: false,
       isModalVisible: false,
       isProcessing: false,
     };
@@ -98,6 +119,13 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
+    showEditModal() {
+      this.isEditModalVisible = true;
+    },
+    closeEditModal() {
+      this.isEditModalVisible = false;
+    },
+
     async addFavorite() {
       try {
         this.isProcessing = true;
