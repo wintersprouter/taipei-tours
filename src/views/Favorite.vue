@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <section class="tab"><NavTabs /></section>
+    <template v-if="isEmpty"><InfoCard /> </template>
     <section class="attractions">
-      <div v-if="isEmpty">尚無最愛的景點</div>
       <div class="container">
         <div class="attractions-wrapper">
           <Attraction
@@ -33,10 +33,11 @@
 import NavTabs from "../components/NavTabs.vue";
 import Attraction from "../components/Attraction.vue";
 import Pagination from "../components/Pagination.vue";
+import InfoCard from "../components/InfoCard.vue";
 const STORAGE_KEY = "favorite-list";
 export default {
   name: "Favorite",
-  components: { NavTabs, Attraction, Pagination },
+  components: { NavTabs, Attraction, Pagination, InfoCard },
   data() {
     return {
       favorAttractions: [],
@@ -87,6 +88,9 @@ export default {
         this.favorAttractions = this.favorAttractions.filter(
           (data) => data.id !== id
         );
+        if (!this.favorAttractions.length) {
+          this.isEmpty = true;
+        }
         this.saveStorage();
         return alert(` ${name}從我的最愛中移除`);
       } else {
