@@ -22,9 +22,9 @@
         <section class="modal-body" id="modalDescription">
           <slot name="body">
             <div class="modal-body-description">
-              <form class="form">
+              <form class="form" @submit.stop.prevent="handleSubmit" novalidate>
                 <div class="form-group">
-                  <label for="name">景點名稱<small>必填欄位</small></label>
+                  <label for="name">景點名稱<small>*必填欄位</small></label>
                   <input
                     id="name"
                     class="form-control"
@@ -44,11 +44,12 @@
                     v-model="attraction.tel"
                     type="text"
                     name="tel"
+                    maxlength="20"
                     placeholder="請輸入景點電話"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="address">景點地址<small>必填欄位</small></label>
+                  <label for="address">景點地址<small>*必填欄位</small></label>
                   <input
                     id="address"
                     class="form-control"
@@ -56,6 +57,8 @@
                     type="text"
                     placeholder="請輸入景點地址"
                     name="address"
+                    maxlength="30"
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -67,6 +70,7 @@
                     type="text"
                     placeholder="請輸入景點官網"
                     name="official_site"
+                    maxlength="50"
                   />
                 </div>
                 <div class="form-group">
@@ -78,18 +82,21 @@
                     type="text"
                     placeholder="請輸入景點開放時間"
                     name="open_time"
+                    maxlength="50"
                   />
                 </div>
 
                 <div class="form-group">
                   <label for="introduction"
-                    >景點介紹 <small>必填欄位</small></label
+                    >景點介紹 <small>*必填欄位</small></label
                   >
                   <textarea
                     id="introduction"
                     v-model="attraction.introduction"
                     rows="6"
                     name="introduction"
+                    maxlength="250"
+                    required
                   />
                 </div>
                 <button type="submit" class="button-save">儲存</button>
@@ -110,7 +117,6 @@ export default {
       attraction: {
         id: -1,
         name: "",
-        category: [],
         address: "",
         introduction: "",
         official_site: "",
@@ -125,7 +131,6 @@ export default {
       default: () => ({
         id: -1,
         name: "",
-        category: [],
         address: "",
         introduction: "",
         official_site: "",
@@ -141,71 +146,21 @@ export default {
     },
   },
   created() {
-    this.fetchCategories();
     this.attraction = {
       ...this.attraction,
       ...this.initialAttraction,
     };
   },
   methods: {
-    fetchCategories() {
-      this.categories = [
-        {
-          id: 11,
-          name: "養生溫泉",
-        },
-        {
-          id: 12,
-          name: "單車遊蹤",
-        },
-        {
-          id: 13,
-          name: "歷史建築",
-        },
-        {
-          id: 14,
-          name: "宗教信仰",
-        },
-        {
-          id: 15,
-          name: "藝文館所",
-        },
-        {
-          id: 18,
-          name: "公共藝術",
-        },
-        {
-          id: 16,
-          name: "戶外踏青",
-        },
-        {
-          id: 17,
-          name: "藍色水路",
-        },
-        {
-          id: 19,
-          name: "親子共遊",
-        },
-        {
-          id: 20,
-          name: "北北基景點",
-        },
-        {
-          id: 23,
-          name: "夜市商圈",
-        },
-        {
-          id: 24,
-          name: "主題商街",
-        },
-        {
-          id: 25,
-          name: "無障礙旅遊推薦景點",
-        },
-      ];
-    },
     close() {
       this.$emit("close");
+    },
+    handleSubmit() {
+      // if (!form.checkValidity()) {
+      //   e.stopPropagation();
+      //   e.preventDefault();
+      //   alert("Form invalid"); //驗證不通過，就跳 alert
+      // }
     },
   },
 };

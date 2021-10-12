@@ -24,3 +24,11 @@ input.form-control {
   }
 }
 
+
+input:invalid,textarea:invalid {
+  border: 1px solid red;
+}
+
+input:valid,textarea:valid {
+  border-bottom: 1px solid green;
+}
