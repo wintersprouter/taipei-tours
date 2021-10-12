@@ -8,7 +8,7 @@
         aria-describedby="modalDescription"
       >
         <header class="modal-header" id="modalTitle">
-          <slot name="header">編輯景點內容：{{ attraction.name }}</slot>
+          <slot name="header">編輯景點</slot>
           <button
             type="button"
             class="button-close"
@@ -22,90 +22,77 @@
         <section class="modal-body" id="modalDescription">
           <slot name="body">
             <div class="modal-body-description">
-              <form>
-                <div class="modal-body-content">
-                  <div class="form-group">
-                    <label for="name">景點名稱</label>
-                    <input
-                      id="name"
-                      v-model="attraction.name"
-                      type="text"
-                      name="name"
-                      placeholder="請輸入景點名稱"
-                      maxlength="20"
-                      required
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="tel">電話</label>
-                    <input
-                      id="tel"
-                      v-model="attraction.tel"
-                      type="text"
-                      name="tel"
-                      placeholder="請輸入景點電話"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="address">景點地址</label>
-                    <input
-                      id="address"
-                      v-model="attraction.address"
-                      type="text"
-                      placeholder="請輸入景點地址"
-                      name="address"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="official_site">景點地址</label>
-                    <input
-                      id="official_site"
-                      v-model="attraction.official_site"
-                      type="text"
-                      placeholder="請輸入景點官網"
-                      name="official_site"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="open_time">景點開放時間</label>
-                    <input
-                      id="open_time"
-                      v-model="attraction.open_time"
-                      type="text"
-                      placeholder="請輸入景點開放時間"
-                      name="open_time"
-                    />
-                  </div>
+              <form class="form">
+                <div class="form-group">
+                  <label for="name">景點名稱<small>必填欄位</small></label>
+                  <input
+                    id="name"
+                    class="form-control"
+                    v-model="attraction.name"
+                    type="text"
+                    name="name"
+                    placeholder="請輸入景點名稱"
+                    maxlength="20"
+                    required
+                  />
                 </div>
                 <div class="form-group">
-                  <label for="introduction">景點介紹</label>
+                  <label for="tel">電話</label>
+                  <input
+                    id="tel"
+                    class="form-control"
+                    v-model="attraction.tel"
+                    type="text"
+                    name="tel"
+                    placeholder="請輸入景點電話"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="address">景點地址<small>必填欄位</small></label>
+                  <input
+                    id="address"
+                    class="form-control"
+                    v-model="attraction.address"
+                    type="text"
+                    placeholder="請輸入景點地址"
+                    name="address"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="official_site">景點官網</label>
+                  <input
+                    id="official_site"
+                    class="form-control"
+                    v-model="attraction.official_site"
+                    type="text"
+                    placeholder="請輸入景點官網"
+                    name="official_site"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="open_time">景點開放時間</label>
+                  <input
+                    id="open_time"
+                    class="form-control"
+                    v-model="attraction.open_time"
+                    type="text"
+                    placeholder="請輸入景點開放時間"
+                    name="open_time"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="introduction"
+                    >景點介紹 <small>必填欄位</small></label
+                  >
                   <textarea
                     id="introduction"
                     v-model="attraction.introduction"
-                    rows="5"
+                    rows="6"
                     name="introduction"
                   />
                 </div>
-                <fieldset class="form-group" name="category">
-                  <legend>景點類別</legend>
-
-                  <div
-                    class="form-check"
-                    v-for="category in categories"
-                    :key="category.id"
-                  >
-                    <input
-                      class="form-check-input"
-                      name="category-type"
-                      type="checkbox"
-                      :value="category.id"
-                    />
-                    <label class="form-check-label" :for="name">{{
-                      category.name
-                    }}</label>
-                  </div>
-                </fieldset>
-                <button type="submit">儲存</button>
+                <button type="submit" class="button-save">儲存</button>
               </form>
             </div>
           </slot>
