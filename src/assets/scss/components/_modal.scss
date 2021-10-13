@@ -10,7 +10,6 @@
   border-radius: 15px;
   &::-webkit-scrollbar {
     width: 0px;
-    
   }
   &-backdrop {
     z-index: 5;
@@ -58,12 +57,10 @@
       border-radius: 10px;
     }
     &-description {
-      display: flex;
-      justify-content: space-around;
-      text-align: left;
-    }
-    &-content {
-      width:43%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      width: 100%;
+      grid-gap: 1.5rem;
     }
   }
   &-description {
