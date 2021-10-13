@@ -44,3 +44,22 @@
     }
   }
 }
+@include phone-width() {
+  .nav-pills {
+    display: none;
+  } 
+}
+@include tablet-width() {
+  .select-dropdown {
+    display: none;
+  }
+}
+@include pc-width() {
+  .select-dropdown {
+    display: none;
+  }
+}
+@include pc-xl-width() {
+  .select-dropdown {
+    display: none;
+  }}

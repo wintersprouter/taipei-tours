@@ -39,7 +39,7 @@ a.page-link:hover span {
     }
   }
 }
-@mixin phone-width() {
+@include  phone-width() {
   .page {
     &-link-number {
       display: none;
