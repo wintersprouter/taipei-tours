@@ -54,6 +54,16 @@
         </div>
       </div>
       <div class="card-footer">
+        <router-link
+          v-show="isFavoritedList"
+          :to="{
+            name: 'favorite-edit',
+            params: { id: attraction.id },
+          }"
+          class="button-edit"
+          >Edit</router-link
+        >
+
         <button
           class="button-more"
           type="button"
@@ -73,6 +83,7 @@
 </template>
 <script>
 import Modal from "./Modal.vue";
+
 export default {
   name: "Attraction",
   components: {
@@ -82,6 +93,10 @@ export default {
     initialAttraction: {
       type: Object,
       required: true,
+    },
+    isFavoritedList: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -98,6 +113,7 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
+
     async addFavorite() {
       try {
         this.isProcessing = true;

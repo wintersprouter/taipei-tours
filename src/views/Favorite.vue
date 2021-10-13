@@ -9,6 +9,7 @@
             v-for="attraction in attractions"
             :key="attraction.id"
             :initial-attraction="attraction"
+            :is-favorited-list="isFavoritedList"
             @after-add-favorite="afterAddFavorite"
             @after-remove-favorite="afterAddFavorite"
           />

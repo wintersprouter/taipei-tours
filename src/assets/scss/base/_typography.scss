@@ -25,3 +25,41 @@ main {
   width: 80%;
   margin:10rem auto 0 auto;
 }
+
+small {
+  color: $color-red;
+  margin-left: 1rem;
+}
+textarea {
+  resize: none;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  border: none;
+  border-bottom: 1px solid $color-gray;
+  background-color: $color-background;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  padding: 0.5em;
+  &:hover,
+  &:focus {
+    border: 1px solid rgba($color: $color-gray, $alpha: 1.5);
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary-light;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+label {
+  color: $color-primary;
+  font-weight: 500;
+}

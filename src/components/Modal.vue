@@ -49,7 +49,6 @@
                   </p>
                   <p v-if="attraction.tel">電話：{{ attraction.tel }}</p>
                 </div>
-
                 <p>
                   <em class="modal-modified"
                     >update date: {{ attraction.modified }}</em
@@ -59,9 +58,6 @@
             </div>
           </slot>
         </section>
-        <footer class="modal-footer">
-          <slot name="footer">加入收藏</slot>
-        </footer>
       </div>
     </div>
   </transition>
