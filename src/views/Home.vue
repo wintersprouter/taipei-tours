@@ -76,7 +76,6 @@ export default {
           categoryIds: queryCategoryIds,
         });
         const { total, data } = response.data;
-        console.log(data);
 
         const pageLimit = 30;
         const totalpages = [];
