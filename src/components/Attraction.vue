@@ -102,7 +102,6 @@ export default {
   data() {
     return {
       attraction: this.initialAttraction,
-      isEditModalVisible: false,
       isModalVisible: false,
       isProcessing: false,
     };

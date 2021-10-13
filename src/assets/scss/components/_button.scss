@@ -88,6 +88,7 @@
     border: 0.1rem solid $color-secondary;
     color: $color-secondary;
     @extend %modal-btn;
+    padding: 0.2em 0.5em;
     &:hover{
       background-color: $color-secondary;
     }
@@ -106,10 +107,9 @@
   }
   &-save {
     @extend %modal-btn;
-    right: 16%;
+    right: 20%;
     bottom:3%;
     border: 0.1rem solid $color-red;
-
     color: $color-red;
     &:hover{
       background-color: $color-red;
