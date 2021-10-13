@@ -1,0 +1,128 @@
+%like-btn {
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  top: 5%;
+  font-size: 1em;
+  border-radius: 100%;
+  padding: 0.333em 0.35em 0.25em 0.5em;
+  cursor: pointer;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+  text-decoration:none;
+}
+%like-icon {
+  display: inline-block;
+  fill: currentColor;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.2em;
+}
+
+%modal-btn {
+  position: absolute;
+  bottom:5%;
+  background-color:transparent;
+  border-radius: 15px;
+  font-weight: 700;
+  padding: 0.5em;
+  font-size: 1.5rem;
+  cursor: pointer;
+  &:hover{
+      color: $color-white;
+      box-shadow: 0 1rem 2rem rgba($color-black,.15);
+      transform: translateY(-2px);
+  }
+  &:active{
+    box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+    transform: translateY(0);
+  }
+}
+
+.button {
+  &-like {
+    @extend %like-btn;
+    border: 0.1em solid rgba($color: $color-gray, $alpha: .4);
+    background-color: $color-background;
+    color: rgba($color: $color-gray, $alpha: .5);
+    box-shadow: 0 0.25em 1em -0.25em;
+    &:hover {
+      color: $color-red;
+      border: 0.1em solid $color-red;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+  
+    &-icon {
+      @extend %like-icon;
+    }
+  }
+  &-unlike {
+    @extend %like-btn;
+    border: 0.1em solid rgba($color: $color-red, $alpha: .4);
+    background-color: $color-white;
+    color: $color-red;
+    &-icon {
+      @extend %like-icon;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+    &:hover {
+      color: $color-gray;
+      border: 0.1em solid $color-gray;
+    }
+  }
+  
+  &-more {
+    right:5%;
+    border: 0.1rem solid $color-primary-light;
+    color: $color-primary-light;
+    @extend %modal-btn;
+    &:hover{
+      background-color: $color-primary-light;
+    }
+  }
+  &-edit {
+    left:5%;
+    border: 0.1rem solid $color-secondary;
+    color: $color-secondary;
+    @extend %modal-btn;
+    padding: 0.2em 0.5em;
+    &:hover{
+      background-color: $color-secondary;
+    }
+  }
+  &-close {
+    position: absolute;
+    top: 0;
+    right: 2%;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: $color-secondary;
+    background: transparent;
+  }
+  &-save {
+    background-color:transparent;
+    border-radius: 15px;
+    font-weight: 700;
+    padding: 0.5em;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 0.1rem solid $color-red;
+    color: $color-red;
+    &:active {
+      box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+      transform: translateY(0);
+    }
+    &:hover {
+      color: $color-white;
+      box-shadow: 0 1rem 2rem rgba($color-black,.15);
+      transform: translateY(-2px);
+      background-color: $color-red;
+    }
+  }
+}

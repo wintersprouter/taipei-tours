@@ -1,0 +1,20 @@
+.navbar {
+  padding: 0 3rem;
+  &-brand {
+    display: inline-flex;
+    &-title {
+      display: flex;
+      font-size: 2.5rem;
+      line-height: 3rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      &-text {
+        color: $color-primary;
+      }
+      &-icon {
+        font-size: 3rem;
+        color: rgba($color: $color-primary, $alpha: 0.5);
+      }
+    }
+  }
+}

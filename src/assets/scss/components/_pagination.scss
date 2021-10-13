@@ -1,0 +1,51 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 5rem auto;
+}
+.page {
+  &-link {
+    height: 37px;
+    padding: 7px 20px;
+    color: $color-primary-light;
+  }
+  &-item.active &-link,
+  &-item.active span {
+    color: $color-white;
+    background-color:$color-primary-light;
+    border-color: $color-primary-light;
+    border-radius: 50px;
+    z-index: 1;
+  }
+  &-item span {
+    color:$color-primary-light;
+  }
+}
+
+a.page-link:hover,
+a.page-link:hover span {
+  color: $color-white;
+  background-color:$color-primary-light;
+  border-color:$color-primary-light;
+  border-radius: 50px;
+}
+@include tablet-width() {
+  .page {
+    &-link-number {
+      display: none;
+    }
+    &-item-number {
+      display: none;
+    }
+  }
+}
+@include  phone-width() {
+  .page {
+    &-link-number {
+      display: none;
+    }
+    &-item-number {
+      display: none;
+    }
+  }  
+}

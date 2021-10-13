@@ -1,0 +1,27 @@
+.nav-tabs {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid $color-secondary;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  &-item {
+    margin-right: 2rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &-link {
+    color: $color-gray;
+    letter-spacing: 0.5rem;
+    font-size: 1.75rem;
+    &:hover {
+      color: $color-secondary;
+    }
+    &.active {
+      padding-bottom: 1.7rem;
+      border-bottom: 4px solid $color-secondary;
+      color: $color-secondary;
+      font-weight: 700;
+    }
+  }
+}

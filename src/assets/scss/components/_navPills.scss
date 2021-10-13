@@ -1,0 +1,110 @@
+.nav {
+  &-pills {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-end;
+    width: 100%;
+    padding: 1rem;
+    margin: 2.5rem auto;
+    height: 100%;
+  }
+  &-item {
+    margin-right: 1.5rem;
+    margin-bottom: 2rem;
+    &:first-child {
+      margin-left: 1.5rem;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &-link {
+    border: 1px solid $color-primary;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    text-align: center;
+    color: $color-primary;
+    background-color: transparent;
+    &:hover {
+      color: $color-white;
+      background-color: rgba($color-primary,.65);
+      border: 1px solid rgba($color-primary,.65);
+      font-weight: 600;
+      box-shadow: 0 1rem 2rem rgba($color-black,.15);
+    }
+    &:active {
+      box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+    }
+    &.active  {
+      color: $color-white;
+      background-color: $color-primary;
+      font-weight: 600;
+    }
+  }
+}
+
+.select-dropdown {
+	position: relative;
+	background-color: #E6E6E6;
+	border-radius: 5px;
+  margin: 2rem auto;
+
+  &,& * {
+	  padding: 0;
+	  position: relative;
+	  box-sizing: border-box;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 0;
+    height: 0;
+    margin-top: -2px;
+    border-top: 5px solid #aaa;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+  }
+  & select {
+    font-size: 1.6rem;
+    font-weight: normal;
+    max-width: 100%;
+    padding: 0.8rem 2.4rem 0.8rem 1rem;
+    border: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    &:active,&:focus {
+      outline: none;
+	    box-shadow: none;
+    }
+    & option {
+      width: 100%;
+    }
+  }
+  
+}
+
+@include phone-width() {
+  .nav-pills {
+    display: none;
+  } 
+}
+@include tablet-width() {
+  .select-dropdown {
+    display: none;
+  }
+}
+@include pc-width() {
+  .select-dropdown {
+    display: none;
+  }
+}
+@include pc-xl-width() {
+  .select-dropdown {
+    display: none;
+  }}
