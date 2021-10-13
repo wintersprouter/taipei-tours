@@ -18,12 +18,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba($color:     $color-black, $alpha: .3);
+    background-color: rgba($color: $color-black, $alpha: .3);
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  &-header,&-footer {
+  &-header {
     padding: 1.5rem;
     display: flex;
   }
@@ -36,11 +36,6 @@
     letter-spacing: .5rem;
     justify-content: space-between;
     width: 100%;
-  }
-  &-footer {
-    border-top: 1px solid $color-background;
-    flex-direction: column;
-    justify-content: flex-end;
   }
   &-body {
     position: relative;

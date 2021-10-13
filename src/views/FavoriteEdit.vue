@@ -26,7 +26,7 @@
             type="text"
             name="tel"
             maxlength="20"
-            placeholder="+886-x-xxxxxxxx"
+            placeholder="+886-x-xxxxxxxx/+886-xxx-xxxxxx"
             required
           />
         </div>
@@ -79,9 +79,11 @@
             required
           />
         </div>
-        <button type="submit" class="button-save" :disabled="isProcessing">
-          {{ isProcessing ? "處理中..." : "儲存" }}
-        </button>
+        <div class="form-action">
+          <button type="submit" class="button-save" :disabled="isProcessing">
+            {{ isProcessing ? "處理中..." : "儲存" }}
+          </button>
+        </div>
       </form>
     </section>
   </div>
@@ -125,8 +127,10 @@ export default {
         alert("此欄位不得空白");
         return;
       }
-      let phone = /^[+]\d{3}-\d{1}-\d{8}$/;
-      if (!phone.test(tel)) {
+
+      let phone = /^[+]\d{3}-\d{3}-\d{6}$/;
+      let telphone = /^[+]\d{3}-\d{3}-\d{6}$/;
+      if (!phone.test(tel) || !telphone.test(tel)) {
         alert("電話格式不正確");
         return;
       }
@@ -155,6 +159,7 @@ export default {
       this.saveStorage(saveData);
       this.isProcessing = false;
       this.$router.push({ name: "Favorite" });
+      alert("成功更新景點資訊");
     },
     async saveStorage(saveData) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
