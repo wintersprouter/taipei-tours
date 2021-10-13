@@ -106,12 +106,22 @@
     background: transparent;
   }
   &-save {
-    @extend %modal-btn;
-    right: 20%;
-    bottom:3%;
+    background-color:transparent;
+    border-radius: 15px;
+    font-weight: 700;
+    padding: 0.5em;
+    font-size: 1.5rem;
+    cursor: pointer;
     border: 0.1rem solid $color-red;
     color: $color-red;
-    &:hover{
+    &:active {
+      box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+      transform: translateY(0);
+    }
+    &:hover {
+      color: $color-white;
+      box-shadow: 0 1rem 2rem rgba($color-black,.15);
+      transform: translateY(-2px);
       background-color: $color-red;
     }
   }

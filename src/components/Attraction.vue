@@ -120,6 +120,7 @@ export default {
         this.attraction = { ...this.attraction, isFavorited: true };
         let favoritedAttraction = this.attraction;
         this.$emit("after-add-favorite", favoritedAttraction);
+        alert(`${this.attraction.name}加入我的最愛!`);
         this.isProcessing = false;
       } catch (error) {
         this.isProcessing = false;
@@ -132,6 +133,7 @@ export default {
         this.attraction = { ...this.attraction, isFavorited: false };
         let favoritedAttraction = this.attraction;
         this.$emit("after-remove-favorite", favoritedAttraction);
+        alert(` ${this.attraction.name}從我的最愛中移除`);
         this.isProcessing = false;
       } catch (error) {
         this.isProcessing = false;

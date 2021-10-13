@@ -1,6 +1,7 @@
 @import 'base/base';
 @import 'abstracts/variables';
 @import 'base/typography';
+@import 'abstracts/mixins';
 @import 'components/navbar';
 @import 'pages/home';
 @import 'components/attraction';
@@ -12,3 +13,4 @@
 @import 'components/navPills';
 @import 'components/infoCard';
 @import 'components/form';
+@import 'base/animations';

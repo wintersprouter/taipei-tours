@@ -33,10 +33,11 @@
         <li
           v-for="page in totalPage"
           :key="page"
+          class="page-item-number"
           :class="['page-item', { active: currentPage === page }]"
         >
           <router-link
-            class="page-link"
+            class="page-link page-link-number"
             :to="{ name: 'Home', query: { categoryIds, page } }"
           >
             {{ page }}

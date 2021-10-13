@@ -2,11 +2,15 @@
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   width: 90%;
   height: 80%;
   border-radius: 15px;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
   &-backdrop {
     z-index: 5;
     position: fixed;
@@ -14,12 +18,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba($color:     $color-black, $alpha: .3);
+    background-color: rgba($color: $color-black, $alpha: .3);
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  &-header,&-footer {
+  &-header {
     padding: 1.5rem;
     display: flex;
   }
@@ -32,11 +36,6 @@
     letter-spacing: .5rem;
     justify-content: space-between;
     width: 100%;
-  }
-  &-footer {
-    border-top: 1px solid $color-background;
-    flex-direction: column;
-    justify-content: flex-end;
   }
   &-body {
     position: relative;
@@ -53,12 +52,10 @@
       border-radius: 10px;
     }
     &-description {
-      display: flex;
-      justify-content: space-around;
-      text-align: left;
-    }
-    &-content {
-      width:43%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      width: 100%;
+      grid-gap: 1.5rem;
     }
   }
   &-description {
@@ -107,6 +104,10 @@
   }
   &-modified {
     color: $color-gray;
+  }
+  &-icon {
+    color: $color-secondary;
+    margin-right: 1rem;
   }
   &-fade {
     &-enter,&-leave-to{

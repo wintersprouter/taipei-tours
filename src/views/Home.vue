@@ -1,11 +1,29 @@
 <template>
   <div class="container">
     <section class="tab"><NavTabs /></section>
-    <section class="categories"><NavPills :categories="categories" /></section>
+    <section class="cover">
+      <div class="cover-text">
+        <h1 class="heading-primary">趣台北</h1>
+      </div>
+    </section>
+    <section class="categories">
+      <template v-if="isLoadingCategoryIds">
+        <SkeletonNavPill />
+      </template>
+      <NavPills v-else :categories="categories" />
+    </section>
     <section class="attractions">
       <div class="container">
         <div class="attractions-wrapper">
+          <template v-if="isLoading">
+            <SkeletonCards
+              v-for="loadingCard in loadingCards"
+              :key="loadingCard.id"
+            />
+          </template>
+
           <Attraction
+            v-else
             v-for="attraction in attractions"
             :key="attraction.id"
             :initial-attraction="attraction"
@@ -35,10 +53,19 @@ import miscellaneousAPI from "./../apis/miscellaneous";
 import Pagination from "../components/Pagination.vue";
 import NavPills from "../components/NavPills.vue";
 import NavTabs from "../components/NavTabs.vue";
+import SkeletonCards from "../components/SkeletonCards.vue";
+import SkeletonNavPill from "../components/SkeletonNavPill.vue";
 const STORAGE_KEY = "favorite-list";
 export default {
   name: "Home",
-  components: { NavTabs, NavPills, Attraction, Pagination },
+  components: {
+    NavTabs,
+    NavPills,
+    Attraction,
+    Pagination,
+    SkeletonCards,
+    SkeletonNavPill,
+  },
   data() {
     return {
       attractions: [],
@@ -50,6 +77,20 @@ export default {
       categoryIds: "",
       categories: [],
       favorAttractions: [],
+      isLoading: false,
+      isLoadingCategoryIds: false,
+      loadingCards: [
+        { id: 0 },
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+        { id: 6 },
+        { id: 7 },
+        { id: 8 },
+        { id: 9 },
+      ],
     };
   },
   created() {
@@ -71,6 +112,7 @@ export default {
   methods: {
     async fetchAttractions({ queryPage, queryCategoryIds }) {
       try {
+        this.isLoading = true;
         const response = await attractionsAPI.getAttractions({
           page: queryPage,
           categoryIds: queryCategoryIds,
@@ -100,34 +142,39 @@ export default {
         this.previousPage = this.currentPage - 1 < 1 ? 1 : this.currentPage - 1;
         this.nextPage =
           this.currentPage + 1 > this.pages ? this.pages : this.currentPage + 1;
+        this.isLoading = false;
       } catch (error) {
+        this.isLoading = false;
         console.log("error", error);
       }
     },
     async fetchAttractionCategories({ queryType }) {
       try {
+        this.isLoadingCategoryIds = true;
         const { data } = await miscellaneousAPI.getCategories({
           type: queryType,
         });
         const { Category } = data.data;
         this.categories = Category;
+        this.isLoadingCategoryIds = false;
       } catch (error) {
+        this.isLoadingCategoryIds = false;
         console.log("error", error);
       }
     },
     afterAddFavorite(favoritedAttraction) {
-      const { id, name } = favoritedAttraction;
+      const { id } = favoritedAttraction;
       const isFavorited = this.favorAttractions.some((data) => data.id === id);
       if (isFavorited) {
         this.favorAttractions = this.favorAttractions.filter(
           (data) => data.id !== id
         );
         this.saveStorage();
-        return alert(` ${name}從我的最愛中移除`);
+        return;
       } else {
         this.favorAttractions.push(favoritedAttraction);
         this.saveStorage();
-        return alert(`${name}加入我的最愛!`);
+        return;
       }
     },
     async saveStorage() {
