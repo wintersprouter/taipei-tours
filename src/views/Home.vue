@@ -6,7 +6,12 @@
         <h1 class="heading-primary">趣台北</h1>
       </div>
     </section>
-    <section class="categories"><NavPills :categories="categories" /></section>
+    <section class="categories">
+      <template v-if="isLoadingCategoryIds">
+        <SkeletonNavPill />
+      </template>
+      <NavPills v-else :categories="categories" />
+    </section>
     <section class="attractions">
       <div class="container">
         <div class="attractions-wrapper">
@@ -49,10 +54,18 @@ import Pagination from "../components/Pagination.vue";
 import NavPills from "../components/NavPills.vue";
 import NavTabs from "../components/NavTabs.vue";
 import SkeletonCards from "../components/SkeletonCards.vue";
+import SkeletonNavPill from "../components/SkeletonNavPill.vue";
 const STORAGE_KEY = "favorite-list";
 export default {
   name: "Home",
-  components: { NavTabs, NavPills, Attraction, Pagination, SkeletonCards },
+  components: {
+    NavTabs,
+    NavPills,
+    Attraction,
+    Pagination,
+    SkeletonCards,
+    SkeletonNavPill,
+  },
   data() {
     return {
       attractions: [],
@@ -65,6 +78,7 @@ export default {
       categories: [],
       favorAttractions: [],
       isLoading: false,
+      isLoadingCategoryIds: false,
       loadingCards: [
         { id: 0 },
         { id: 1 },
@@ -136,12 +150,15 @@ export default {
     },
     async fetchAttractionCategories({ queryType }) {
       try {
+        this.isLoadingCategoryIds = true;
         const { data } = await miscellaneousAPI.getCategories({
           type: queryType,
         });
         const { Category } = data.data;
         this.categories = Category;
+        this.isLoadingCategoryIds = false;
       } catch (error) {
+        this.isLoadingCategoryIds = false;
         console.log("error", error);
       }
     },
