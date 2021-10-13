@@ -54,15 +54,16 @@
         </div>
       </div>
       <div class="card-footer">
-        <button
-          v-if="isFavoritedList"
+        <router-link
+          v-show="isFavoritedList"
+          :to="{
+            name: 'favorite-edit',
+            params: { id: attraction.id },
+          }"
           class="button-edit"
-          type="button"
-          :data-id="attraction.id"
-          @click="showEditModal"
+          >Edit</router-link
         >
-          Edit
-        </button>
+
         <button
           class="button-more"
           type="button"
@@ -76,23 +77,17 @@
           @close="closeModal"
           :initial-attraction="attraction"
         />
-        <EditModal
-          v-show="isEditModalVisible"
-          @close="closeEditModal"
-          :initial-attraction="attraction"
-        />
       </div>
     </div>
   </div>
 </template>
 <script>
 import Modal from "./Modal.vue";
-import EditModal from "./EditModal.vue";
+
 export default {
   name: "Attraction",
   components: {
     Modal,
-    EditModal,
   },
   props: {
     initialAttraction: {
