@@ -128,15 +128,15 @@ export default {
         return;
       }
 
-      let phone = /^[+]\d{3}-\d{3}-\d{6}$/;
+      let phone = /^[+]\d{3}-\d{1}-\d{8}$/;
       let telphone = /^[+]\d{3}-\d{3}-\d{6}$/;
-      if (!phone.test(tel) || !telphone.test(tel)) {
-        alert("電話格式不正確");
-        return;
+      if (!phone.test(tel) && !telphone.test(tel)) {
+        return alert("電話格式不正確");
       }
       let url =
         /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-      if (!url.test(official_site)) {
+
+      if (official_site.length && !url.test(official_site)) {
         alert("官網網址格式不正確");
         return;
       }

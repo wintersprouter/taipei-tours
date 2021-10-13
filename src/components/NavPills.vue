@@ -24,6 +24,7 @@
     </ul>
     <div class="select-dropdown">
       <select
+        v-model="selected"
         @change="
           $router.push({
             name: 'Home',
@@ -31,10 +32,10 @@
           })
         "
       >
-        <option value=" ">全部</option>
+        <option value=" " selected>全部</option>
         <option
-          :value="category.id"
           v-for="category in categories"
+          :value="category.id"
           :key="category.id"
         >
           {{ category.name }}
@@ -55,6 +56,7 @@ export default {
   data() {
     return {
       categoryIds: " ",
+      selected: this.$route.query.categoryIds,
     };
   },
   methods: {
