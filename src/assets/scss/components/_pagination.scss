@@ -29,3 +29,23 @@ a.page-link:hover span {
   border-color:$color-primary-light;
   border-radius: 50px;
 }
+@include tablet-width() {
+  .page {
+    &-link-number {
+      display: none;
+    }
+    &-item-number {
+      display: none;
+    }
+  }
+}
+@mixin phone-width() {
+  .page {
+    &-link-number {
+      display: none;
+    }
+    &-item-number {
+      display: none;
+    }
+  }  
+}

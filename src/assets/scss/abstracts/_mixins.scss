@@ -1,15 +1,25 @@
-@mixin pc-width() {
-  @media all and  (min-width: $tablet) {
-    @content;
-  }
-}
-
+//0-425px
 @mixin phone-width() {
   @media all and (max-width: $mobile) {
     @content;
   }
 }
 
+//426px-900px
+@mixin tablet-width() {
+  @media all and  (min-width: $tablet)and(max-width: $tablet-xl) {
+    @content;
+  }
+}
+
+//901px-1440px
+@mixin pc-width() {
+  @media all and (min-width: $notebook) and (max-width: $notebook-xl){
+    @content;
+  }
+}
+
+//1441px
 @mixin pc-xl-width() {
   @media all and (min-width: $desktop) {
     @content;
