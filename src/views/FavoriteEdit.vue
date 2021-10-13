@@ -79,7 +79,9 @@
             required
           />
         </div>
-        <button type="submit" class="button-save">儲存</button>
+        <button type="submit" class="button-save" :disabled="isProcessing">
+          {{ isProcessing ? "處理中..." : "儲存" }}
+        </button>
       </form>
     </section>
   </div>
@@ -94,6 +96,7 @@ export default {
     return {
       favorAttractions: [],
       attraction: {},
+      isProcessing: false,
     };
   },
 
@@ -133,6 +136,7 @@ export default {
         alert("官網網址格式不正確");
         return;
       }
+      this.isProcessing = true;
       const saveData = JSON.parse(localStorage.getItem(STORAGE_KEY)).map(
         (item) => {
           if (item.id === id) {
@@ -149,6 +153,7 @@ export default {
       );
 
       this.saveStorage(saveData);
+      this.isProcessing = false;
       this.$router.push({ name: "Favorite" });
     },
     async saveStorage(saveData) {
