@@ -114,12 +114,6 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
-    showEditModal() {
-      this.isEditModalVisible = true;
-    },
-    closeEditModal() {
-      this.isEditModalVisible = false;
-    },
 
     async addFavorite() {
       try {
