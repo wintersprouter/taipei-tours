@@ -1,6 +1,11 @@
 <template>
   <div class="container">
     <section class="tab"><NavTabs /></section>
+    <section class="cover">
+      <div class="cover-text">
+        <h1 class="heading-primary">趣台北</h1>
+      </div>
+    </section>
     <section class="categories"><NavPills :categories="categories" /></section>
     <section class="attractions">
       <div class="container">
