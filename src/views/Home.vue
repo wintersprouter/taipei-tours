@@ -10,7 +10,15 @@
     <section class="attractions">
       <div class="container">
         <div class="attractions-wrapper">
+          <template v-if="isLoading">
+            <SkeletonCards
+              v-for="loadingCard in loadingCards"
+              :key="loadingCard.id"
+            />
+          </template>
+
           <Attraction
+            v-else
             v-for="attraction in attractions"
             :key="attraction.id"
             :initial-attraction="attraction"
@@ -40,10 +48,11 @@ import miscellaneousAPI from "./../apis/miscellaneous";
 import Pagination from "../components/Pagination.vue";
 import NavPills from "../components/NavPills.vue";
 import NavTabs from "../components/NavTabs.vue";
+import SkeletonCards from "../components/SkeletonCards.vue";
 const STORAGE_KEY = "favorite-list";
 export default {
   name: "Home",
-  components: { NavTabs, NavPills, Attraction, Pagination },
+  components: { NavTabs, NavPills, Attraction, Pagination, SkeletonCards },
   data() {
     return {
       attractions: [],
@@ -55,6 +64,19 @@ export default {
       categoryIds: "",
       categories: [],
       favorAttractions: [],
+      isLoading: false,
+      loadingCards: [
+        { id: 0 },
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+        { id: 6 },
+        { id: 7 },
+        { id: 8 },
+        { id: 9 },
+      ],
     };
   },
   created() {
@@ -76,6 +98,7 @@ export default {
   methods: {
     async fetchAttractions({ queryPage, queryCategoryIds }) {
       try {
+        this.isLoading = true;
         const response = await attractionsAPI.getAttractions({
           page: queryPage,
           categoryIds: queryCategoryIds,
@@ -105,7 +128,9 @@ export default {
         this.previousPage = this.currentPage - 1 < 1 ? 1 : this.currentPage - 1;
         this.nextPage =
           this.currentPage + 1 > this.pages ? this.pages : this.currentPage + 1;
+        this.isLoading = false;
       } catch (error) {
+        this.isLoading = false;
         console.log("error", error);
       }
     },

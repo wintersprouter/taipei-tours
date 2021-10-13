@@ -5,6 +5,12 @@
     <section class="attractions">
       <div class="container">
         <div class="attractions-wrapper">
+          <template v-if="isLoading">
+            <SkeletonCards
+              v-for="loadingCard in loadingCards"
+              :key="loadingCard.id"
+            />
+          </template>
           <Attraction
             v-for="attraction in attractions"
             :key="attraction.id"
@@ -35,10 +41,11 @@ import NavTabs from "../components/NavTabs.vue";
 import Attraction from "../components/Attraction.vue";
 import Pagination from "../components/Pagination.vue";
 import InfoCard from "../components/InfoCard.vue";
+import SkeletonCards from "../components/SkeletonCards.vue";
 const STORAGE_KEY = "favorite-list";
 export default {
   name: "Favorite",
-  components: { NavTabs, Attraction, Pagination, InfoCard },
+  components: { NavTabs, Attraction, Pagination, InfoCard, SkeletonCards },
   data() {
     return {
       favorAttractions: [],
