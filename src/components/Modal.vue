@@ -43,11 +43,36 @@
                 </div>
                 <div class="modal-info">
                   <p class="modal-info-title">景點資訊</p>
-                  <p>地址：{{ attraction.address }}</p>
+                  <p>
+                    <font-awesome-icon
+                      icon="map-marker-alt"
+                      class="modal-icon"
+                    ></font-awesome-icon>
+                    地址：{{ attraction.address }}
+                  </p>
                   <p v-if="attraction.open_time">
+                    <font-awesome-icon
+                      icon="clock"
+                      class="modal-icon"
+                    ></font-awesome-icon>
                     開放時間：{{ attraction.open_time }}
                   </p>
-                  <p v-if="attraction.tel">電話：{{ attraction.tel }}</p>
+                  <p v-if="attraction.tel">
+                    <font-awesome-icon
+                      icon="phone-alt"
+                      class="modal-icon"
+                    ></font-awesome-icon>
+                    電話：{{ attraction.tel }}
+                  </p>
+                  <p v-if="attraction.official_site">
+                    <font-awesome-icon
+                      icon="external-link-alt"
+                      class="modal-icon"
+                    ></font-awesome-icon>
+                    官網：<a :href="attraction.official_site"
+                      >{{ attraction.name }}官網</a
+                    >
+                  </p>
                 </div>
                 <p>
                   <em class="modal-modified"

@@ -110,6 +110,10 @@
   &-modified {
     color: $color-gray;
   }
+  &-icon {
+    color: $color-secondary;
+    margin-right: 1rem;
+  }
   &-fade {
     &-enter,&-leave-to{
       opacity: 0;
