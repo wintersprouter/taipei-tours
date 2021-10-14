@@ -23,6 +23,7 @@
       </li>
     </ul>
     <div class="select-dropdown">
+      <label for="category">請選擇類別</label>
       <select
         v-model="selected"
         @change="
@@ -59,11 +60,18 @@ export default {
       selected: this.$route.query.categoryIds,
     };
   },
+  created() {
+    this.getOptions;
+  },
+
   methods: {
-    changeRout() {
-      this.$router.push({
-        path: `home?categoryIds=${this.categoryIds}+&page=1`,
-      });
+    getOptions() {
+      const { categoryIds } = this.$route.query;
+      if (categoryIds) {
+        this.selected = categoryIds;
+      } else {
+        this.selected = "";
+      }
     },
   },
 };
