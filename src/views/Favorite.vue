@@ -89,7 +89,7 @@ export default {
     },
 
     afterAddFavorite(favoritedAttraction) {
-      const { id, name } = favoritedAttraction;
+      const { id } = favoritedAttraction;
       const isFavorited = this.favorAttractions.some((data) => data.id === id);
       if (isFavorited) {
         this.attractions = this.attractions.filter((data) => data.id !== id);
@@ -100,11 +100,11 @@ export default {
           this.isEmpty = true;
         }
         this.saveStorage();
-        return alert(` ${name}從我的最愛中移除`);
+        return;
       } else {
         this.favorAttractions.push(favoritedAttraction);
         this.saveStorage();
-        return alert(`${name}加入我的最愛!`);
+        return;
       }
     },
     async saveStorage() {
