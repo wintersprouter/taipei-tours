@@ -70,6 +70,7 @@
       color:$color-primary;
     }
     &-text {
+      max-height: 25vh;
       overflow-y: auto;
       &::-webkit-scrollbar {
         width: 6px;
@@ -124,10 +125,16 @@
 @include phone-width() {
   .modal-description {
     width: 100%;
+    &-text {
+      max-height: 100vh;
+    }
   } 
 }
 @include tablet-width() {
   .modal-description {
     width: 100%;
+    &-text {
+      max-height: 20vh;
+    }
   } 
 }
