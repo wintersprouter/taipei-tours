@@ -121,3 +121,13 @@
     }
   }
 }
+@include phone-width() {
+  .modal-description {
+    width: 100%;
+  } 
+}
+@include tablet-width() {
+  .modal-description {
+    width: 100%;
+  } 
+}
