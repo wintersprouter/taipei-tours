@@ -49,7 +49,7 @@
 	position: relative;
 	background-color: #E6E6E6;
 	border-radius: 5px;
-  margin: 5rem auto;
+  margin: 3rem auto;
 
   &,& * {
 	  padding: 0;
@@ -86,7 +86,9 @@
       width: 100%;
     }
   }
-  
+  & label {
+    margin-left: 1rem;
+  }
 }
 
 @include phone-width() {

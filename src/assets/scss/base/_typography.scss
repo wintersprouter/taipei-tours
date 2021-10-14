@@ -92,3 +92,9 @@ a {
     }
   }
 }
+
+@include phone-width() {
+  .cover {
+    height: 40vh;
+  }  
+}
