@@ -64,23 +64,31 @@
           >Edit</router-link
         >
 
-        <router-link
+        <button
           class="button-more"
           type="button"
-          :to="{
-            name: 'attraction',
-            params: { id: attraction.id },
-          }"
+          :data-id="attraction.id"
+          @click="showModal"
         >
           More
-        </router-link>
+        </button>
+        <Modal
+          v-show="isModalVisible"
+          @close="closeModal"
+          :initial-attraction="attraction"
+        />
       </div>
     </div>
   </div>
 </template>
+
 <script>
+import Modal from "./Modal.vue";
 export default {
   name: "Attraction",
+  components: {
+    Modal,
+  },
   props: {
     initialAttraction: {
       type: Object,
@@ -95,9 +103,16 @@ export default {
     return {
       attraction: this.initialAttraction,
       isProcessing: false,
+      isModalVisible: false,
     };
   },
   methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
     async addFavorite() {
       try {
         this.isProcessing = true;
