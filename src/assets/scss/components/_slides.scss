@@ -2,6 +2,7 @@
   text-align: center;
   overflow: hidden;
   margin: 0 auto;
+  width: 80%;
 }
 
 .slides {
@@ -42,4 +43,10 @@
   & > div:target {
     transform: scale(0.8); 
   }
+}
+
+@include  phone-width() {
+  .slider {
+    width: 100%;
+  } 
 }

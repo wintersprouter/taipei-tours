@@ -59,6 +59,7 @@
     }
   }
   &-description {
+    width: 80%;
     font-size: 1.5rem;
     line-height:2.5rem;
     color: $color-black;
@@ -69,7 +70,6 @@
       color:$color-primary;
     }
     &-text {
-      max-height: 20vh;
       overflow-y: auto;
       &::-webkit-scrollbar {
         width: 6px;
@@ -83,7 +83,7 @@
         border-radius: 5px;
       }
     }
-    
+
   }
   &-info {
     font-size: 1.5rem;
@@ -105,6 +105,9 @@
   &-modified {
     color: $color-gray;
   }
+  &-footer{
+    margin-bottom: 2rem;
+  }
   &-icon {
     color: $color-secondary;
     margin-right: 1rem;
@@ -117,4 +120,14 @@
       transition: opacity 0.5s ease;
     }
   }
+}
+@include phone-width() {
+  .modal-description {
+    width: 100%;
+  } 
+}
+@include tablet-width() {
+  .modal-description {
+    width: 100%;
+  } 
 }

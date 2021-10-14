@@ -74,7 +74,7 @@
                     >
                   </p>
                 </div>
-                <p>
+                <p class="modal-footer">
                   <em class="modal-modified"
                     >update date: {{ attraction.modified }}</em
                   >
@@ -114,7 +114,6 @@ export default {
     },
     generagteImages() {
       this.images = this.attraction.images;
-
       this.images.map((image) => {
         image.id = "slide-" + uuidv4();
       });
@@ -124,4 +123,4 @@ export default {
     this.generagteImages();
   },
 };
-</script> 
+</script>  

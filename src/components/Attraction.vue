@@ -81,9 +81,9 @@
     </div>
   </div>
 </template>
+
 <script>
 import Modal from "./Modal.vue";
-
 export default {
   name: "Attraction",
   components: {
@@ -102,8 +102,8 @@ export default {
   data() {
     return {
       attraction: this.initialAttraction,
-      isModalVisible: false,
       isProcessing: false,
+      isModalVisible: false,
     };
   },
   methods: {
@@ -113,7 +113,6 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
-
     async addFavorite() {
       try {
         this.isProcessing = true;
