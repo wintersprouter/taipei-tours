@@ -60,19 +60,5 @@ export default {
       selected: this.$route.query.categoryIds,
     };
   },
-  created() {
-    this.getOptions;
-  },
-
-  methods: {
-    getOptions() {
-      const { categoryIds } = this.$route.query;
-      if (categoryIds) {
-        this.selected = categoryIds;
-      } else {
-        this.selected = "";
-      }
-    },
-  },
 };
 </script>
